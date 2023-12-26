@@ -6,7 +6,7 @@ import './App.css'
 
 function App() {
   const [countryData,setCountryData] = useState([]);
-
+  const [loading,setLoading] = useState(true);
 
   const url = `https://restcountries.com/v3.1/all`
 
@@ -18,6 +18,7 @@ function App() {
       const data = await res.json()
       console.log(data)
       setCountryData(data)
+      setLoading(false)
     } catch (error) {
       console.log(error)
     }
@@ -32,7 +33,7 @@ function App() {
     <div className="App">
         <Header/>
         <SearchInput/>
-        <CountryList dataCountrys={countryData}/>
+        <CountryList dataCountrys={countryData} loading={loading}/>
     </div>
   )
 }
